@@ -3,7 +3,7 @@ import { Question, QuestionType } from "../interfaces/question";
 
 import "./QuestionEdit.css";
 
-export const QuestionEdit = ({
+/*export const QuestionEdit = ({
     index,
     lastIndex,
     question,
@@ -250,3 +250,4 @@ export const QuestionEdit = ({
         </>
     );
 };
+*/
