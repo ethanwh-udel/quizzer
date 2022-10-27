@@ -5,7 +5,7 @@ import { Quiz } from "../interfaces/quiz";
 import { QuestionEdit } from "./QuestionEdit";
 
 import "./QuizEdit.css";
-
+/*
 export const QuizEdit = ({
     quiz,
     editQuiz,
@@ -164,3 +164,4 @@ export const QuizEdit = ({
         </div>
     );
 };
+*/
