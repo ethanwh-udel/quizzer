@@ -4,7 +4,7 @@ import { Quiz } from "../interfaces/quiz";
 import { QuizCard } from "./QuizCard";
 import "./QuizList.css";
 import { QuizView } from "./QuizView";
-
+/*
 export const QuizList = ({
     quizzes,
     editQuiz,
@@ -53,3 +53,4 @@ export const QuizList = ({
         </div>
     );
 };
+*/
