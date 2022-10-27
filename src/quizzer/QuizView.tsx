@@ -4,7 +4,7 @@ import { QuizExpanded } from "./QuizExpanded";
 import { QuizEdit } from "./QuizEdit";
 
 import "./QuizView.css";
-
+/*
 export const QuizView = ({
     quiz,
     editQuiz,
@@ -39,3 +39,4 @@ export const QuizView = ({
         </div>
     );
 ;
+*/
