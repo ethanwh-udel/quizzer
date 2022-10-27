@@ -3,7 +3,7 @@ import { Quiz } from "../interfaces/quiz";
 
 import "./QuizCard.css";
 import { Question } from "../interfaces/question";
-
+/*
 export const QuizCard = ({
     quiz,
     handleClick
@@ -33,3 +33,4 @@ export const QuizCard = ({
         </div>
     );
 };
+*/
