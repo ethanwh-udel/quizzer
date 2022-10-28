@@ -6,6 +6,7 @@ import { AddQuizModal } from "./AddQuizModal";
 
 import "./Quizzer.css";
 import sample from "../data/quizzes.json";
+import { Button } from "react-bootstrap";
 
 const QUIZZES = sample.map(
     (quiz): Quiz => ({
@@ -20,7 +21,7 @@ const QUIZZES = sample.map(
     })
 );
 
-export const Quizzer = () => {
+export function Quizzer(): JSX.Element {
     const [quizzes, setQuizzes] = useState<Quiz[]>(QUIZZES);
     const [showAddModal, setShowAddModal] = useState(false);
 
@@ -31,6 +32,7 @@ export const Quizzer = () => {
     }
 
     function addQuiz(title: string, body: string) {
+        let newQuiz = {id: 0, title: title, body: body, published: false, questionList: []}
         setQuizzes([...quizzes, newQuiz]);
     }
 
@@ -38,22 +40,25 @@ export const Quizzer = () => {
         setQuizzes(quizzes.filter((q: Quiz): boolean => qId !== q.id));
     }
 
-    const handleShowModal = () => setShowAddModal(true);
-    const handleCloseModal = () => setShowAddModal(false);
-
+    const handleShowModal = () => {
+        setShowAddModal(showAddModal === true ? false : true);
+    }
     return (
         <div className="quizzer">
             <QuizList
                 quizzes={quizzes}
-                editQuiz={editQuiz}
-                deleteQuiz={deleteQuiz}
-                showModal={handleShowModal}
+                //editQuiz={editQuiz}
+                //deleteQuiz={deleteQuiz}
+                //showModal={handleShowModal}
             ></QuizList>
+            <Button className="add_btn" onClick={handleShowModal}>Add Quiz</Button>
+            {showAddModal &&
             <AddQuizModal
                 show={showAddModal}
-                handleClose={handleCloseModal}
+                handleShow={showAddModal}
                 addQuiz={addQuiz}
             ></AddQuizModal>
+            }
             <hr />
             <h2 style={{ color: "white" }}>Application Sketch</h2>
             {/* <img src={require("./sketchFINAL.jpg")} /> */}
