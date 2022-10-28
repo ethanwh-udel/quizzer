@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import { Quiz } from "../interfaces/quiz";
-import { QuizCard } from "./QuizCard";
+//import { QuizCard } from "./QuizCard";
 import "./QuizList.css";
-import { QuizView } from "./QuizView";
+//import { QuizView } from "./QuizView";
 /*
 export const QuizList = ({
     quizzes,
