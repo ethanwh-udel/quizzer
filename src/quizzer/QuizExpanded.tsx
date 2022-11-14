@@ -4,8 +4,8 @@ import { Question } from "../interfaces/question";
 import { Quiz } from "../interfaces/quiz";
 
 import "./QuizExpanded.css";
-//import { QuizQuestion } from "./QuizQuestion";
-/*
+import { QuizQuestion } from "./QuizQuestion";
+
 export const QuizExpanded = ({
     quiz,
     editQuiz,
@@ -111,4 +111,3 @@ export const QuizExpanded = ({
         </>
     );
 };
-*/
