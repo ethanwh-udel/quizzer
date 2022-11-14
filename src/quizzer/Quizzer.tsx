@@ -61,7 +61,7 @@ export function Quizzer(): JSX.Element {
             }
             <hr />
             <h2 style={{ color: "white" }}>Application Sketch</h2>
-            <img src={require("./sketchFINAL.jpg")} />
+            {/*<img src={require("./sketchFINAL.jpg")} />*/}
             <hr />
             <div style={{ color: "white" }}>
                 <h2>Completed Features</h2>
