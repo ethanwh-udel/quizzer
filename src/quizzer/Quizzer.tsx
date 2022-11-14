@@ -47,9 +47,9 @@ export function Quizzer(): JSX.Element {
         <div className="quizzer">
             <QuizList
                 quizzes={quizzes}
-                //editQuiz={editQuiz}
-                //deleteQuiz={deleteQuiz}
-                //showModal={handleShowModal}
+                editQuiz={editQuiz}
+                deleteQuiz={deleteQuiz}
+                showModal={handleShowModal}
             ></QuizList>
             <Button className="add_btn" onClick={handleShowModal}>Add Quiz</Button>
             {showAddModal &&
@@ -61,7 +61,7 @@ export function Quizzer(): JSX.Element {
             }
             <hr />
             <h2 style={{ color: "white" }}>Application Sketch</h2>
-            {/* <img src={require("./sketchFINAL.jpg")} /> */}
+            <img src={require("./sketchFINAL.jpg")} />
             <hr />
             <div style={{ color: "white" }}>
                 <h2>Completed Features</h2>

@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Question, QuestionType } from "../interfaces/question";
+import { Button } from "react-bootstrap";
 
 import "./QuestionEdit.css";
 
-/*export const QuestionEdit = ({
+export const QuestionEdit = ({
     index,
     lastIndex,
     question,
@@ -250,4 +251,3 @@ import "./QuestionEdit.css";
         </>
     );
 };
-*/
