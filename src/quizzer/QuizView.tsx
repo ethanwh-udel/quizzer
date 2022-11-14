@@ -5,16 +5,18 @@ import { QuizEdit } from "./QuizEdit";
 
 import "./QuizView.css";
 
-export const QuizView = ({
-    quiz,
-    editQuiz,
-    deleteQuiz,
-    resetView
-}: {}) => {
+interface Props {
+    quiz: Quiz;
+    editQuiz: (qId: number, newQuiz: Quiz) => void;
+    deleteQuiz: (qId: number) => void;
+    resetView: () => void;
+}
+
+export const QuizView = ({ quiz, editQuiz, deleteQuiz, resetView }: Props) => {
     const [edit, setEdit] = useState(false);
 
     const switchEdit = () => {
-        setEdit(edit);
+        setEdit(!edit);
     };
 
     return (
@@ -28,6 +30,7 @@ export const QuizView = ({
                     resetView={resetView}
                 ></QuizEdit>
             )
+            }
             {!edit && (
                 <QuizExpanded
                     quiz={quiz}
@@ -35,7 +38,7 @@ export const QuizView = ({
                     resetView={resetView}
                     switchEdit={switchEdit}
                 ></QuizExpanded>
-            )
+            )}
         </div>
     );
-;
+};
