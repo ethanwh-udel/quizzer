@@ -6,28 +6,36 @@ import { QuestionEdit } from "./QuestionEdit";
 
 import "./QuizEdit.css";
 
+interface Props {
+    quiz: Quiz;
+    editQuiz: (qId: number, newQuiz: Quiz) => void;
+    deleteQuiz: (qId: number) => void;
+    switchEdit: () => void;
+    resetView: () => void;
+}
+
 export const QuizEdit = ({
     quiz,
     editQuiz,
     deleteQuiz,
     switchEdit,
     resetView
-}: {) => {
+}: Props) => {
     const [newQuiz, setNewQuiz] = useState<Quiz>({ ...quiz });
 
     const editQuestion = (questionId: number, newQuestion: Question) => {
         setNewQuiz({
             ...newQuiz,
-            questionList: newQuiz.questionList.map(
-            )
+            questionList: newQuiz.questionList.map((q) =>
+            q.id === questionId ? newQuestion : q
+            ),
         });
     };
 
     const removeQuestion = (questionId: number) => {
         setNewQuiz({
             ...newQuiz,
-            questionList: newQuiz.questionList.filter(
-            )
+            questionList: newQuiz.questionList.filter((q) => q.id !== questionId),
         });
     };
 
@@ -42,9 +50,9 @@ export const QuizEdit = ({
                 (q: Question, idx: number): Question => {
                     if (idx === idx1) return newQuiz.questionList[idx2];
                     if (idx === idx2) return newQuiz.questionList[idx1];
-                    return;
+                    return newQuiz.questionList[idx];
                 }
-            )
+            ),
         });
     };
 
@@ -57,12 +65,10 @@ export const QuizEdit = ({
                             <Form.Label>Title: </Form.Label>
                             <Form.Control
                                 value={newQuiz.title}
-                                onChange={(
-                                    e: React.ChangeEvent<HTMLInputElement>
-                                ) =>
+                                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                                     setNewQuiz({
                                         ...newQuiz,
-                                        title: e.target.value
+                                        title: e.target.value,
                                     })
                                 }
                             ></Form.Control>
@@ -74,12 +80,10 @@ export const QuizEdit = ({
                             label="Quiz Published"
                             data-testid="Quiz Published"
                             checked={newQuiz.published}
-                            onChange={(
-                                e: React.ChangeEvent<HTMLInputElement>
-                            ) => {
+                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                                 setNewQuiz({
                                     ...newQuiz,
-                                    published: 
+                                    published: e.target.checked,
                                 });
                             }}
                         ></Form.Check>
@@ -99,7 +103,7 @@ export const QuizEdit = ({
             <div>
                 {newQuiz.questionList.map((q: Question, index: number) => (
                     <QuestionEdit
-                        key={newQuiz.id + "|" + q.id}
+                        key={newQuiz.id + "|" + q.id + index}
                         index={index}
                         lastIndex={newQuiz.questionList.length - 1}
                         question={q}
@@ -127,8 +131,8 @@ export const QuizEdit = ({
                                     expected: "Example Answer",
                                     points: 1,
                                     published: false
-                                }
-                            ]
+                                },
+                            ],
                         });
                     }}
                 >
