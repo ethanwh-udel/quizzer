@@ -29,8 +29,7 @@ export const QuizView = ({ quiz, editQuiz, deleteQuiz, resetView }: Props) => {
                     switchEdit={switchEdit}
                     resetView={resetView}
                 ></QuizEdit>
-            )
-            }
+            )}
             {!edit && (
                 <QuizExpanded
                     quiz={quiz}
