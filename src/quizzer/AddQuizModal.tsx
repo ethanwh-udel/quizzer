@@ -49,7 +49,7 @@ export const AddQuizModal = ({ show, handleClose, addQuiz }: Props) => {
                         onClick={() => {
                             setTitle("Example Quiz");
                             setBody("Example Description");
-                            handleCLose();
+                            handleClose();
                         }}
                     >
                         Close
