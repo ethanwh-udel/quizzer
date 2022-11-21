@@ -1,29 +1,26 @@
 import React, { useState } from "react";
 import { Button, Modal, Form } from "react-bootstrap";
 
-export const AddQuizModal = ({
-    show,
-    handleClose,
-    addQuiz
-}: {
+interface Props {
     show: boolean;
-    handleClose: boolean;
+    handleClose: () => void;
     addQuiz: (title: string, body: string) => void;
-}) => {
+}
+
+export const AddQuizModal = ({ show, handleClose, addQuiz }: Props) => {
     const [title, setTitle] = useState<string>("Example Quiz");
     const [body, setBody] = useState<string>("Example Body");
     const saveChanges = () => {
         addQuiz(title, body);
         setTitle("Example Quiz");
         setBody("Example Description");
-        show = false;
+        handleClose();
     };
-    const handledClose = () => {
-        show = false;
-    }
+
+    
     return (
         <div>
-            <Modal show={show} onHide={handledClose} animation={false}>
+            <Modal show={show} onHide={handleClose} animation={false}>
                 <Modal.Header closeButton>
                     <Modal.Title>Add New Quiz</Modal.Title>
                 </Modal.Header>
@@ -41,8 +38,8 @@ export const AddQuizModal = ({
                             as="textarea"
                             rows={3}
                             value={body}
-                            onChange={(e: React.ChangeEvent<HTMLInputElement>
-                                )=>setBody(e.target.value)}
+                            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                                setBody(e.target.value)}
                         ></Form.Control>
                     </Form.Group>
                 </Modal.Body>
@@ -52,7 +49,7 @@ export const AddQuizModal = ({
                         onClick={() => {
                             setTitle("Example Quiz");
                             setBody("Example Description");
-                            show = false;
+                            handleCLose();
                         }}
                     >
                         Close
