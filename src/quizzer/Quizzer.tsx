@@ -21,7 +21,7 @@ const QUIZZES = sample.map(
     })
 );
 
-export cosnt Quizzer = () => {
+export const Quizzer = () => {
     const [quizzes, setQuizzes] = useState<Quiz[]>(QUIZZES);
     const [showAddModal, setShowAddModal] = useState(false);
 
