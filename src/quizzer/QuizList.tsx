@@ -5,15 +5,19 @@ import { QuizCard } from "./QuizCard";
 import "./QuizList.css";
 import { QuizView } from "./QuizView";
 
+interface Props {
+    quizzes: Quiz[];
+    editQuiz: (qId: number, newQuiz: Quiz) => void;
+    deleteQuiz: (qId: number) => void;
+    showModal: () => void;
+}
+
 export const QuizList = ({
     quizzes,
     editQuiz,
     deleteQuiz,
-    showModal
-}: {
-    quizzes: Quiz[];
-    editQuiz
-}) => {
+    showModal,
+}: Props) => {
     const [displayId, setDisplayId] = useState<null | number>(null);
 
     const handleQuizView = (id: number) => {
@@ -40,19 +44,17 @@ export const QuizList = ({
                     </Button>
                 </>
             )}
-            {quizzes.map((quiz: Quiz) => {
-                if (displayId === quiz.id) {
-                    return (
-                        <QuizView
-                            key={quiz.id}
-                            quiz={quiz}
-                            editQuiz={editQuiz}
-                            deleteQuiz={deleteQuiz}
-                            resetView={resetQuizView}
-                        ></QuizView>
-                    );
-                }
-            })}
+            {quizzes.map((quiz: Quiz) => 
+                displayId === quiz.id ? (
+                    <QuizView
+                        key={quiz.id}
+                        quiz={quiz}
+                        editQuiz={editQuiz}
+                        deleteQuiz={deleteQuiz}
+                        resetView={resetQuizView}
+                    ></QuizView>
+                ) : null
+            )}
         </div>
     );
 };

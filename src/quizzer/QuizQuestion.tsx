@@ -5,14 +5,23 @@ import { Form, Button } from "react-bootstrap";
 import "./QuizQuestion.css";
 type ChangeEvent = React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>;
 
+interface Props {
+    index: number;
+    question: Question;
+    submitted: boolean;
+    handleSubmit: (index: number) => void;
+    addPoints: (p: number) => void;
+    editQuestionSub: (questionId: number, sub: string) => void;
+}
+
 export const QuizQuestion = ({
     index,
     question,
     submitted,
     handleSubmit,
     addPoints,
-    editQuestionSub
-}: {}) => {
+    editQuestionSub,
+}: Props) => {
     const handleClick = (e: ChangeEvent) => {
         if (!submitted) {
             editQuestionSub(question.id, e.target.value);
@@ -22,7 +31,7 @@ export const QuizQuestion = ({
     const handleSubmitClick = () => {
         handleSubmit(index);
         if (question.submission === question.expected) {
-            addPoints(5);
+            addPoints(question.points);
         }
     };
 
@@ -37,7 +46,7 @@ export const QuizQuestion = ({
                     <h4>
                         {question.points} pt{question.points !== 1 ? "s" : ""}
                     </h4>
-                </div>f
+                </div>
                 <div className="answer_box">
                     {question.type === "short_answer_question" && (
                         <Form.Group controlId="formShortAnswerBox">
@@ -53,7 +62,7 @@ export const QuizQuestion = ({
                             {question.options.map(
                                 (option: string, i: number) => (
                                     <Form.Check
-                                        type=""
+                                        type="checkbox"
                                         name={"questionChoice" + index}
                                         key={option + " | " + i}
                                         label={option}
