@@ -6,7 +6,7 @@ import { AddQuizModal } from "./AddQuizModal";
 
 import "./Quizzer.css";
 import sample from "../data/quizzes.json";
-import { Button } from "react-bootstrap";
+//import { Button } from "react-bootstrap";
 
 const QUIZZES = sample.map(
     (quiz): Quiz => ({
@@ -17,32 +17,38 @@ const QUIZZES = sample.map(
                 submission: "",
                 type: q.type as QuestionType
             })
-        )
+        ),
     })
 );
 
-export function Quizzer(): JSX.Element {
+export cosnt Quizzer = () => {
     const [quizzes, setQuizzes] = useState<Quiz[]>(QUIZZES);
     const [showAddModal, setShowAddModal] = useState(false);
 
     function editQuiz(qId: number, newQuiz: Quiz) {
-        setQuizzes(
-            quizzes.map((q: Quiz): Quiz => (q.id === qId ? newQuiz : q))
-        );
+        setQuizzes(quizzes.map((q: Quiz): Quiz => (q.id === qId ? newQuiz : q)));
     }
 
     function addQuiz(title: string, body: string) {
-        let newQuiz = {id: 0, title: title, body: body, published: false, questionList: []}
-        setQuizzes([...quizzes, newQuiz]);
+        setQuizzes([
+            ...quizzes,
+            {
+                title,
+                body,
+                published: false,
+                id: quizzes[quizzes.length - 1].id + 1,
+                questionList: [],
+            },
+        ]);
     }
 
     function deleteQuiz(qId: number) {
         setQuizzes(quizzes.filter((q: Quiz): boolean => qId !== q.id));
     }
 
-    const handleShowModal = () => {
-        setShowAddModal(showAddModal === true ? false : true);
-    }
+    const handleShowModal = () => setShowAddModal(true);
+    const handleCloseModal = () => setShowAddModal(false);
+
     return (
         <div className="quizzer">
             <QuizList
@@ -51,14 +57,12 @@ export function Quizzer(): JSX.Element {
                 deleteQuiz={deleteQuiz}
                 showModal={handleShowModal}
             ></QuizList>
-            <Button className="add_btn" onClick={handleShowModal}>Add Quiz</Button>
-            {showAddModal &&
+            {/*<Button className="add_btn" onClick={handleShowModal}>Add Quiz</Button>*/}
             <AddQuizModal
                 show={showAddModal}
-                handleShow={showAddModal}
+                handleClose={handleCloseModal}
                 addQuiz={addQuiz}
             ></AddQuizModal>
-            }
             <hr />
             <h2 style={{ color: "white" }}>Application Sketch</h2>
             {/*<img src={require("./sketchFINAL.jpg")} />*/}

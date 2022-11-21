@@ -17,7 +17,7 @@ export const QuizExpanded = ({
     quiz,
     editQuiz,
     resetView,
-    switchEdit
+    switchEdit,
 }: Props) => {
     const filteredQuestions = quiz.questionList.filter(
         (q: Question): boolean =>
