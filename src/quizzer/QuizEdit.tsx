@@ -19,7 +19,7 @@ export const QuizEdit = ({
     editQuiz,
     deleteQuiz,
     switchEdit,
-    resetView
+    resetView,
 }: Props) => {
     const [newQuiz, setNewQuiz] = useState<Quiz>({ ...quiz });
 
@@ -130,7 +130,7 @@ export const QuizEdit = ({
                                     submission: "",
                                     expected: "Example Answer",
                                     points: 1,
-                                    published: false
+                                    published: false,
                                 },
                             ],
                         });
